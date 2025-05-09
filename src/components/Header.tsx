@@ -2,37 +2,18 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Moon, Sun } from 'lucide-react';
+import { useTheme } from '@/hooks/use-theme';
 
 const Header = () => {
   const [mounted, setMounted] = useState(false);
-  const [theme, setTheme] = useState<'dark' | 'light'>('dark');
+  const { theme, toggleTheme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // Theme toggle
+  // Mount effect
   useEffect(() => {
     setMounted(true);
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'light') {
-      setTheme('light');
-      document.documentElement.classList.remove('dark');
-    } else {
-      setTheme('dark');
-      document.documentElement.classList.add('dark');
-    }
   }, []);
-
-  const toggleTheme = () => {
-    if (theme === 'dark') {
-      localStorage.setItem('theme', 'light');
-      document.documentElement.classList.remove('dark');
-      setTheme('light');
-    } else {
-      localStorage.setItem('theme', 'dark');
-      document.documentElement.classList.add('dark');
-      setTheme('dark');
-    }
-  };
 
   // Header scroll effect
   useEffect(() => {
