@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 
 // Define skill categories
@@ -86,7 +85,7 @@ const Skills = () => {
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}
         >
-          <span className="heading-number">02.</span> Skills & Technologies
+          Skills & Technologies
         </h2>
 
         <div className={`transition-all duration-700 delay-200 ${

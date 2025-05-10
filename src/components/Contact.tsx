@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -71,7 +70,7 @@ const Contact = () => {
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}
           >
-            <span className="heading-number">04.</span> Get In Touch
+            Get In Touch
           </h2>
           
           <p className={`text-center text-secondary mb-8 transition-all duration-700 delay-200 ${

@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
+import ResumeButton from './ResumeButton';
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -51,6 +52,7 @@ const Hero = () => {
               <a href="#projects" className="btn-primary flex items-center gap-2">
                 View My Work <ArrowRight className="h-4 w-4" />
               </a>
+              <ResumeButton />
               <a href="#contact" className="btn-primary">
                 Get In Touch
               </a>

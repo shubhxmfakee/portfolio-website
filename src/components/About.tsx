@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 
 const About = () => {
@@ -36,7 +35,7 @@ const About = () => {
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}
         >
-          <span className="heading-number">01.</span> About Me
+          About Me
         </h2>
         
         <div className="grid grid-cols-1 md:grid-cols-5 gap-10">

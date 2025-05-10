@@ -84,7 +84,7 @@ const Projects = () => {
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}
         >
-          <span className="heading-number">03.</span> Featured Projects
+          Featured Projects
         </h2>
 
         {/* Featured Projects */}
