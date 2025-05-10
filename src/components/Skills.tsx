@@ -1,57 +1,50 @@
+
 import { useEffect, useState } from 'react';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
+import { ChevronRight } from 'lucide-react';
 
 // Define skill categories
 const skillsData = [
   {
     category: "Cloud Platforms",
     skills: [
-      { name: "AWS", level: 90 },
-      { name: "Azure", level: 85 },
-      { name: "Azure Data Factory", level: 90 },
-      { name: "Google Cloud", level: 70 },
+      "AWS", "Azure", "Azure Data Factory", "Google Cloud", "Terraform", 
+      "Docker", "Kubernetes", "CloudFormation", "Serverless"
     ]
   },
   {
     category: "Programming",
     skills: [
-      { name: "Python", level: 95 },
-      { name: "SQL/PL-SQL", level: 90 },
-      { name: "R", level: 80 },
-      { name: "JavaScript", level: 75 },
+      "Python", "SQL/PL-SQL", "R", "JavaScript", "TypeScript", "Java", 
+      "Bash", "PowerShell", "Go", "C#"
     ]
   },
   {
     category: "Data & Analytics",
     skills: [
-      { name: "PowerBI", level: 90 },
-      { name: "Tableau", level: 85 },
-      { name: "Data Warehousing", level: 85 },
-      { name: "ETL/ELT Pipelines", level: 90 },
+      "PowerBI", "Tableau", "Data Warehousing", "ETL/ELT Pipelines", 
+      "SQL Server", "PostgreSQL", "Oracle", "MySQL", "MongoDB", "Redshift"
     ]
   },
   {
     category: "Tools & Platforms",
     skills: [
-      { name: "Google Analytics", level: 80 },
-      { name: "IBM Maximo", level: 75 },
-      { name: "Databricks", level: 85 },
-      { name: "Snowflake", level: 80 },
+      "Google Analytics", "IBM Maximo", "Databricks", "Snowflake", "Airflow",
+      "Jenkins", "GitHub Actions", "Prometheus", "Grafana", "ELK Stack"
     ]
   },
   {
     category: "AI & Machine Learning",
     skills: [
-      { name: "Scikit-learn", level: 85 },
-      { name: "TensorFlow", level: 75 },
-      { name: "Natural Language Processing", level: 80 },
-      { name: "Predictive Analytics", level: 85 },
+      "Scikit-learn", "TensorFlow", "Natural Language Processing", "Predictive Analytics",
+      "PyTorch", "Computer Vision", "MLOps", "Recommendation Systems", "OpenAI", "Hugging Face"
     ]
   }
 ];
 
 const Skills = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [activeTab, setActiveTab] = useState(0);
+  const [activeTab, setActiveTab] = useState("Cloud Platforms");
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -91,44 +84,50 @@ const Skills = () => {
         <div className={`transition-all duration-700 delay-200 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
-          {/* Category tabs */}
-          <div className="flex flex-wrap justify-center mb-10 gap-2">
-            {skillsData.map((category, index) => (
-              <button
-                key={category.category}
-                className={`px-4 py-2 rounded-md transition-all font-mono text-sm ${
-                  activeTab === index 
-                    ? 'bg-primary text-background' 
-                    : 'hover:bg-accent'
-                }`}
-                onClick={() => setActiveTab(index)}
-                aria-selected={activeTab === index}
-                role="tab"
-              >
-                {category.category}
-              </button>
-            ))}
-          </div>
+          <Tabs 
+            defaultValue="Cloud Platforms" 
+            value={activeTab}
+            onValueChange={setActiveTab}
+            className="w-full"
+          >
+            <TabsList className="w-full flex flex-wrap justify-center mb-10 gap-2 bg-transparent">
+              {skillsData.map((category) => (
+                <TabsTrigger
+                  key={category.category}
+                  value={category.category}
+                  className={`px-4 py-2 rounded-md transition-all text-sm font-medium relative
+                    ${activeTab === category.category 
+                      ? 'text-primary bg-accent shadow-[0_0_10px_rgba(100,255,218,0.3)] border border-primary/30' 
+                      : 'text-secondary hover:text-primary hover:bg-accent/50'
+                    }`}
+                >
+                  {category.category}
+                </TabsTrigger>
+              ))}
+            </TabsList>
 
-          {/* Skills grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {skillsData[activeTab].skills.map((skill, idx) => (
-              <div 
-                key={skill.name}
-                className={`bg-card p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-accent/20 animate-fade-in-up`}
-                style={{ animationDelay: `${idx * 100}ms` }}
+            {/* Skills content */}
+            {skillsData.map((category) => (
+              <TabsContent 
+                key={category.category} 
+                value={category.category}
+                className="mt-6 animate-fade-in"
               >
-                <h3 className="text-lg font-semibold mb-3">{skill.name}</h3>
-                <div className="w-full bg-background rounded-full h-2 mb-2">
-                  <div 
-                    className="bg-primary h-2 rounded-full transition-all duration-1000 ease-out"
-                    style={{ width: `${isVisible ? skill.level : 0}%` }}
-                  ></div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-2">
+                  {category.skills.map((skill, index) => (
+                    <div 
+                      key={skill} 
+                      className="flex items-center py-2 animate-fade-in-up"
+                      style={{ animationDelay: `${index * 50}ms` }}
+                    >
+                      <ChevronRight className="h-4 w-4 text-primary mr-2 flex-shrink-0" />
+                      <span className="text-foreground font-medium">{skill}</span>
+                    </div>
+                  ))}
                 </div>
-                <p className="text-xs text-right text-secondary">{skill.level}%</p>
-              </div>
+              </TabsContent>
             ))}
-          </div>
+          </Tabs>
         </div>
 
         <div className={`mt-16 bg-card rounded-lg p-6 border border-accent/20 transition-all duration-700 delay-400 ${
