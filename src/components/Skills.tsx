@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from 'react';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
-import { ChevronRight, Cloud, Code, Database, BarChart, Brain } from 'lucide-react';
+import { ChevronRight, Cloud, Code, Database, BarChart, Brain, Award } from 'lucide-react';
 
 // Define skill categories with icons
 const skillsData = [
