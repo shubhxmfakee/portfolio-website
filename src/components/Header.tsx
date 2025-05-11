@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Moon, Sun } from 'lucide-react';
+import { Moon, Sun, User, Briefcase, Code, PenTool, Send, Menu, X } from 'lucide-react';
 import { useTheme } from '@/hooks/use-theme';
 
 const Header = () => {
@@ -36,13 +36,13 @@ const Header = () => {
     setMenuOpen(!menuOpen);
   };
 
-  // Nav links
+  // Nav links with icons
   const navLinks = [
-    { name: 'About', url: '#about' },
-    { name: 'Experience', url: '#experience' },
-    { name: 'Skills', url: '#skills' },
-    { name: 'Projects', url: '#projects' },
-    { name: 'Contact', url: '#contact' },
+    { name: 'About', url: '#about', icon: <User size={16} /> },
+    { name: 'Experience', url: '#experience', icon: <Briefcase size={16} /> },
+    { name: 'Skills', url: '#skills', icon: <Code size={16} /> },
+    { name: 'Projects', url: '#projects', icon: <PenTool size={16} /> },
+    { name: 'Contact', url: '#contact', icon: <Send size={16} /> },
   ];
 
   if (!mounted) return null;
@@ -50,15 +50,17 @@ const Header = () => {
   return (
     <header 
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-background/90 backdrop-blur-md shadow-md py-2' : 'py-4'
+        isScrolled ? 'glass-bg shadow-soft py-2' : 'py-4'
       }`}
       role="banner"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           {/* Logo */}
-          <a href="#" className="text-xl font-bold text-primary">
-            <span className="font-mono">&lt;</span>Portfolio<span className="font-mono">/&gt;</span>
+          <a href="#" className="text-xl font-bold text-primary hover:text-primary/80 transition-all duration-300 group">
+            <span className="font-mono">&lt;</span>
+            <span className="group-hover:animate-pulse-soft">Portfolio</span>
+            <span className="font-mono">/&gt;</span>
           </a>
 
           {/* Desktop Navigation */}
@@ -67,21 +69,31 @@ const Header = () => {
               <a 
                 key={link.name} 
                 href={link.url} 
-                className="nav-link font-mono text-sm"
+                className="nav-link text-sm group"
               >
-                {link.name}
+                <span className="icon-hover text-primary">{link.icon}</span>
+                <span className="group-hover:translate-x-1 transition-transform duration-300">{link.name}</span>
               </a>
             ))}
             <Button 
               onClick={toggleTheme} 
               size="icon" 
               variant="outline"
+              className="hover:shadow-glow hover:border-primary/50 transition-all duration-300"
               aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
             >
-              {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+              {theme === 'dark' ? 
+                <Sun className="h-4 w-4 hover:animate-spin-slow" /> : 
+                <Moon className="h-4 w-4 hover:animate-spin-slow" />}
             </Button>
-            <a href="/resume.pdf" className="btn-primary text-sm font-mono" download aria-label="Download Resume">
+            <a 
+              href="/resume.pdf" 
+              className="btn-primary text-sm font-mono group" 
+              download 
+              aria-label="Download Resume"
+            >
               Resume
+              <span className="opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-x-1">→</span>
             </a>
           </nav>
 
@@ -91,6 +103,7 @@ const Header = () => {
               onClick={toggleTheme} 
               size="icon" 
               variant="outline"
+              className="hover:shadow-glow hover:border-primary/50 transition-all duration-300"
               aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
             >
               {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
@@ -101,11 +114,11 @@ const Header = () => {
               aria-expanded={menuOpen}
               aria-label="Toggle menu"
             >
-              <div className={`w-6 flex flex-col gap-1 transition-all ${menuOpen ? 'transform' : ''}`}>
-                <span className={`block h-0.5 bg-primary transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-1.5' : ''}`}></span>
-                <span className={`block h-0.5 bg-primary transition-all duration-300 ${menuOpen ? 'opacity-0' : ''}`}></span>
-                <span className={`block h-0.5 bg-primary transition-all duration-300 ${menuOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></span>
-              </div>
+              {menuOpen ? (
+                <X className="h-6 w-6 text-primary animate-fade-in" />
+              ) : (
+                <Menu className="h-6 w-6 text-primary animate-fade-in" />
+              )}
             </button>
           </div>
         </div>
@@ -113,7 +126,7 @@ const Header = () => {
 
       {/* Mobile Menu */}
       <nav 
-        className={`fixed bg-background/95 backdrop-blur-md top-[60px] right-0 w-full h-screen transform transition-transform duration-300 ${
+        className={`fixed glass-bg top-[60px] right-0 w-full h-screen transform transition-transform duration-300 ${
           menuOpen ? 'translate-x-0' : 'translate-x-full'
         } md:hidden`}
         role="navigation"
@@ -124,12 +137,18 @@ const Header = () => {
               key={link.name} 
               href={link.url} 
               onClick={() => setMenuOpen(false)}
-              className="nav-link font-mono text-lg"
+              className="nav-link text-lg flex gap-3 hover:translate-y-[-2px] transition-all duration-300"
             >
+              <span className="text-primary">{link.icon}</span>
               {link.name}
             </a>
           ))}
-          <a href="/resume.pdf" className="btn-primary text-lg font-mono mt-8" download>
+          <a 
+            href="/resume.pdf" 
+            className="btn-primary text-lg font-mono mt-8 hover:translate-y-[-2px]" 
+            download
+            onClick={() => setMenuOpen(false)}
+          >
             Resume
           </a>
         </div>

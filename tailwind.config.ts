@@ -95,17 +95,52 @@ export default {
 					'0%': { opacity: '0' },
 					'100%': { opacity: '1' }
 				},
+				'typing': {
+					'0%': { width: '0%' },
+					'100%': { width: '100%' }
+				},
+				'blink': {
+					'0%, 100%': { borderColor: 'transparent' },
+					'50%': { borderColor: 'hsl(var(--primary))' }
+				},
+				'bounce-subtle': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-5px)' }
+				},
+				'spin-slow': {
+					'0%': { transform: 'rotate(0deg)' },
+					'100%': { transform: 'rotate(360deg)' }
+				},
+				'pulse-soft': {
+					'0%, 100%': { opacity: '1' },
+					'50%': { opacity: '0.7' }
+				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'fade-in-up': 'fade-in-up 0.5s ease-out',
-				'fade-in': 'fade-in 0.5s ease-out'
+				'fade-in': 'fade-in 0.5s ease-out',
+				'typing': 'typing 3.5s steps(40, end)',
+				'blink': 'blink 0.7s infinite',
+				'bounce-subtle': 'bounce-subtle 2s infinite',
+				'spin-slow': 'spin-slow 8s linear infinite',
+				'pulse-soft': 'pulse-soft 2s ease-in-out infinite'
 			},
 			fontFamily: {
 				sans: ['Inter', 'sans-serif'],
-				heading: ['Poppins', 'sans-serif']
-			}
+				heading: ['Poppins', 'sans-serif'],
+				mono: ['Fira Code', 'monospace']
+			},
+			boxShadow: {
+				'soft': '0 5px 20px -5px rgba(0, 0, 0, 0.1)',
+				'card': '0 10px 30px -10px rgba(0, 0, 0, 0.1)',
+				'card-hover': '0 20px 30px -15px rgba(0, 0, 0, 0.15)',
+				'glow': '0 0 15px rgba(100, 255, 218, 0.3)'
+			},
+			backgroundImage: {
+				'gradient-subtle': 'linear-gradient(60deg, var(--tw-gradient-stops))',
+			},
 		}
 	},
 	plugins: [require("tailwindcss-animate")],

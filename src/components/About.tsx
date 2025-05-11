@@ -1,4 +1,6 @@
+
 import { useEffect, useState } from 'react';
+import { Database, Cloud, PieChart, Brain, BarChart, FileCode } from 'lucide-react';
 
 const About = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -22,12 +24,25 @@ const About = () => {
     };
   }, []);
 
+  // Define skill items with icons
+  const skillItems = [
+    { text: "Data Engineering Pipelines", icon: <Database size={18} /> },
+    { text: "Cloud Architecture (AWS/Azure)", icon: <Cloud size={18} /> },
+    { text: "Data Visualization & Analytics", icon: <PieChart size={18} /> },
+    { text: "Machine Learning Applications", icon: <Brain size={18} /> },
+    { text: "Business Intelligence", icon: <BarChart size={18} /> },
+    { text: "SQL/NoSQL Database Design", icon: <FileCode size={18} /> }
+  ];
+
   return (
     <section 
       id="about" 
-      className="py-20"
+      className="py-20 relative"
       aria-labelledby="about-title"
     >
+      {/* Background decoration */}
+      <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full filter blur-3xl opacity-50"></div>
+
       <div className="section-container">
         <h2 
           id="about-title" 
@@ -54,31 +69,19 @@ const About = () => {
               <span className="highlight"> e-commerce</span>. My focus areas include:
             </p>
             
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-4">
-              <li className="flex items-center">
-                <span className="text-primary mr-2">▹</span>
-                Data Engineering Pipelines
-              </li>
-              <li className="flex items-center">
-                <span className="text-primary mr-2">▹</span>
-                Cloud Architecture (AWS/Azure)
-              </li>
-              <li className="flex items-center">
-                <span className="text-primary mr-2">▹</span>
-                Data Visualization & Analytics
-              </li>
-              <li className="flex items-center">
-                <span className="text-primary mr-2">▹</span>
-                Machine Learning Applications
-              </li>
-              <li className="flex items-center">
-                <span className="text-primary mr-2">▹</span>
-                Business Intelligence
-              </li>
-              <li className="flex items-center">
-                <span className="text-primary mr-2">▹</span>
-                SQL/NoSQL Database Design
-              </li>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-5">
+              {skillItems.map((item, index) => (
+                <li 
+                  key={index} 
+                  className="flex items-center group" 
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  <span className="text-primary mr-2 transition-transform duration-300 group-hover:scale-110">
+                    {item.icon}
+                  </span>
+                  <span className="group-hover:text-foreground transition-colors duration-300">{item.text}</span>
+                </li>
+              ))}
             </ul>
             
             <p className="text-secondary">
@@ -92,11 +95,28 @@ const About = () => {
           }`}>
             <div className="relative group">
               <div className="absolute -inset-1 rounded-md bg-gradient-to-r from-primary/30 to-primary/10 opacity-75 group-hover:opacity-100 transition duration-300 blur"></div>
-              <div className="relative aspect-square rounded-md overflow-hidden">
-                <div className="w-full h-full bg-lightNavy flex items-center justify-center text-primary">
+              <div className="relative aspect-square rounded-md overflow-hidden hover-card-glow">
+                <div className="w-full h-full bg-card flex items-center justify-center text-primary p-4 relative">
                   {/* Replace with actual image when available */}
-                  <p className="text-center p-4">Your Professional Photo</p>
+                  <div className="absolute inset-0 bg-gradient-subtle from-primary/5 to-secondary/5 opacity-30"></div>
+                  <div className="relative z-10 border-2 border-primary/30 p-8 rounded-md">
+                    <p className="text-center font-medium">Your Professional Photo</p>
+                  </div>
                 </div>
+              </div>
+            </div>
+
+            <div className="mt-4 p-4 border border-accent/20 rounded-md bg-card shadow-soft hover:shadow-card-hover transition-all duration-300">
+              <h3 className="text-lg font-medium mb-2 flex items-center">
+                <span className="text-primary mr-2">
+                  <Cloud size={18} />
+                </span>
+                Cloud Certifications
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                <span className="badge">AWS Solution Architect</span>
+                <span className="badge">Azure Data Engineer</span>
+                <span className="badge">GCP Associate</span>
               </div>
             </div>
           </div>

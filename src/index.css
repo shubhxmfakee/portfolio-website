@@ -1,5 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Fira+Code:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -8,33 +8,33 @@
 @layer base {
   :root {
     /* Light theme variables (default) */
-    --background: 0 0% 100%;
-    --foreground: 224 71% 16%; /* Darker Navy for better readability */
+    --background: 210 40% 98%;     /* Softer light blue background */
+    --foreground: 224 71% 18%;     /* Darker text for better contrast */
 
-    --card: 210 40% 98%;
-    --card-foreground: 224 71% 16%;
+    --card: 0 0% 100%;             /* Pure white cards */
+    --card-foreground: 224 71% 18%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 224 71% 16%;
+    --popover-foreground: 224 71% 18%;
 
-    --primary: 172 76% 33%;    /* Darker Teal for better contrast in light mode */
+    --primary: 180 62% 35%;        /* Deeper, richer teal for better visibility */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 224 45% 35%;  /* Darker Slate for better contrast */
+    --secondary: 224 55% 40%;      /* Darker secondary color for better contrast */
     --secondary-foreground: 0 0% 100%;
 
     --muted: 210 40% 93%;
-    --muted-foreground: 224 45% 35%;
+    --muted-foreground: 224 45% 40%;
 
     --accent: 210 40% 93%;
-    --accent-foreground: 224 71% 16%;
+    --accent-foreground: 224 71% 18%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 85%;
-    --input: 214.3 31.8% 85%;
-    --ring: 172 76% 33%;
+    --border: 214.3 31.8% 80%;     /* Lighter border color */
+    --input: 214.3 31.8% 80%;
+    --ring: 180 62% 35%;           /* Match primary color */
 
     --radius: 0.5rem;
   }
@@ -92,7 +92,7 @@
 
 @layer components {
   .section-container {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24;
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 relative overflow-hidden;
   }
   
   .section-title {
@@ -112,7 +112,7 @@
   }
   
   .nav-link {
-    @apply text-secondary hover:text-primary transition-colors duration-300;
+    @apply text-secondary hover:text-primary transition-colors duration-300 flex items-center gap-2;
   }
 
   .heading-number {
@@ -120,7 +120,35 @@
   }
   
   .btn-primary {
-    @apply px-6 py-3 rounded border border-primary text-primary hover:bg-primary/10 transition-colors duration-300;
+    @apply px-6 py-3 rounded-md border border-primary text-primary hover:bg-primary/10 transition-all duration-300 hover:shadow-glow flex items-center gap-2;
+  }
+
+  /* Card styling */
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-card-hover border border-accent/20 hover:border-primary/30;
+  }
+
+  /* Timeline styling */
+  .timeline-dot {
+    @apply absolute -left-[25px] w-4 h-4 rounded-full bg-primary shadow-[0_0_10px_rgba(100,255,218,0.5)];
+  }
+
+  /* Badge styling */
+  .badge {
+    @apply px-3 py-1 rounded-full text-xs font-medium bg-accent/50 text-secondary inline-flex items-center gap-1;
+  }
+  
+  .glass-bg {
+    @apply bg-background/80 backdrop-blur-sm;
+  }
+  
+  /* Typing animation container */
+  .typing-container {
+    @apply overflow-hidden whitespace-nowrap border-r-2 border-transparent inline-block animate-typing;
+  }
+  
+  .typing-cursor {
+    @apply border-r-2 animate-blink h-[1em] ml-1;
   }
 }
 
@@ -160,4 +188,31 @@
 
 .delay-500 {
   animation-delay: 500ms;
+}
+
+/* Accessibility focus styles */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  @apply outline-none ring-2 ring-primary ring-offset-2 ring-offset-background;
+}
+
+/* Card hover effect */
+.hover-card-glow {
+  @apply transition-all duration-300;
+}
+
+.hover-card-glow:hover {
+  @apply shadow-glow;
+}
+
+/* Icon hover animation */
+.icon-hover {
+  @apply transition-transform duration-300;
+}
+
+.icon-hover:hover {
+  @apply transform scale-110;
 }

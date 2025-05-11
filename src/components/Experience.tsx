@@ -1,6 +1,5 @@
-
 import { useEffect, useState } from 'react';
-import { Building, GraduationCap, Calendar } from 'lucide-react';
+import { Building, GraduationCap, Calendar, Briefcase, BookOpen, Award, Code, Database, BarChart } from 'lucide-react';
 
 // Define work experience data
 const workExperience = [
@@ -8,6 +7,7 @@ const workExperience = [
     title: "Senior Data Engineer",
     company: "Tech Innovations Inc",
     duration: "Jan 2022 - Present",
+    icon: <Database size={20} />,
     description: [
       "Led the design and implementation of enterprise-scale ETL pipelines using AWS Glue and Azure Data Factory",
       "Optimized database queries resulting in 40% reduction in processing time across critical workflows",
@@ -18,6 +18,7 @@ const workExperience = [
     title: "Data Engineer",
     company: "DataSphere Solutions",
     duration: "Mar 2019 - Dec 2021",
+    icon: <Code size={20} />,
     description: [
       "Developed and maintained cloud-based data warehousing solutions on AWS Redshift and Snowflake",
       "Built CI/CD pipelines for automated testing and deployment of data infrastructure",
@@ -28,6 +29,7 @@ const workExperience = [
     title: "Data Analyst",
     company: "Analytics First",
     duration: "Jun 2017 - Feb 2019",
+    icon: <BarChart size={20} />,
     description: [
       "Created interactive dashboards and reports using Tableau and Power BI",
       "Performed complex SQL queries to extract insights from large datasets",
@@ -42,6 +44,7 @@ const education = [
     degree: "Master of Science in Data Science",
     institution: "Stanford University",
     duration: "2015 - 2017",
+    icon: <BookOpen size={20} />,
     description: [
       "Specialized in Machine Learning and Big Data Analytics",
       "Thesis: 'Optimizing ETL Processes in Distributed Computing Environments'"
@@ -51,6 +54,7 @@ const education = [
     degree: "Bachelor of Science in Computer Science",
     institution: "University of California, Berkeley",
     duration: "2011 - 2015",
+    icon: <Award size={20} />,
     description: [
       "Focus on Database Systems and Software Engineering",
       "Senior Project: 'Developing Scalable Data Processing Algorithms'"
@@ -83,9 +87,12 @@ const Experience = () => {
   return (
     <section 
       id="experience" 
-      className="py-20"
+      className="py-20 relative"
       aria-labelledby="experience-title"
     >
+      {/* Background decoration */}
+      <div className="absolute bottom-0 left-0 w-80 h-80 bg-secondary/5 rounded-full filter blur-3xl opacity-50"></div>
+      
       <div className="section-container">
         <h2 
           id="experience-title"
@@ -101,7 +108,7 @@ const Experience = () => {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
           <div className="flex items-center mb-8">
-            <Building className="mr-3 text-primary" size={24} />
+            <Briefcase className="mr-3 text-primary" size={24} />
             <h3 className="text-2xl font-semibold">Work Experience</h3>
           </div>
 
@@ -113,11 +120,14 @@ const Experience = () => {
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 {/* Timeline dot */}
-                <div className="absolute -left-[25px] w-4 h-4 rounded-full bg-primary shadow-[0_0_10px_rgba(100,255,218,0.5)]"></div>
+                <div className="timeline-dot"></div>
                 
-                <div className="bg-card rounded-lg p-6 border border-accent/20 hover:border-primary/30 transition-all duration-300">
+                <div className="bg-card rounded-lg p-6 border border-accent/20 hover:border-primary/30 hover:shadow-card-hover transition-all duration-300 group">
                   <div className="flex flex-wrap items-center justify-between mb-2">
-                    <h4 className="text-xl font-semibold text-foreground">{job.title}</h4>
+                    <h4 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors duration-300 flex items-center gap-2">
+                      <span className="text-primary">{job.icon}</span>
+                      {job.title}
+                    </h4>
                     <div className="flex items-center text-secondary text-sm mt-1 md:mt-0">
                       <Calendar size={14} className="mr-1" />
                       <span>{job.duration}</span>
@@ -126,9 +136,9 @@ const Experience = () => {
                   <p className="text-primary mb-3">{job.company}</p>
                   <ul className="space-y-2">
                     {job.description.map((item, i) => (
-                      <li key={i} className="flex items-start">
-                        <span className="text-primary mr-2">•</span>
-                        <span className="text-secondary">{item}</span>
+                      <li key={i} className="flex items-start group/item">
+                        <span className="text-primary mr-2 mt-1">•</span>
+                        <span className="text-secondary group-hover/item:text-foreground transition-colors duration-300">{item}</span>
                       </li>
                     ))}
                   </ul>
@@ -155,11 +165,14 @@ const Experience = () => {
                 style={{ animationDelay: `${(index + workExperience.length) * 100}ms` }}
               >
                 {/* Timeline dot */}
-                <div className="absolute -left-[25px] w-4 h-4 rounded-full bg-primary shadow-[0_0_10px_rgba(100,255,218,0.5)]"></div>
+                <div className="timeline-dot"></div>
                 
-                <div className="bg-card rounded-lg p-6 border border-accent/20 hover:border-primary/30 transition-all duration-300">
+                <div className="bg-card rounded-lg p-6 border border-accent/20 hover:border-primary/30 hover:shadow-card-hover transition-all duration-300 group">
                   <div className="flex flex-wrap items-center justify-between mb-2">
-                    <h4 className="text-xl font-semibold text-foreground">{edu.degree}</h4>
+                    <h4 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors duration-300 flex items-center gap-2">
+                      <span className="text-primary">{edu.icon}</span>
+                      {edu.degree}
+                    </h4>
                     <div className="flex items-center text-secondary text-sm mt-1 md:mt-0">
                       <Calendar size={14} className="mr-1" />
                       <span>{edu.duration}</span>
@@ -168,9 +181,9 @@ const Experience = () => {
                   <p className="text-primary mb-3">{edu.institution}</p>
                   <ul className="space-y-2">
                     {edu.description.map((item, i) => (
-                      <li key={i} className="flex items-start">
-                        <span className="text-primary mr-2">•</span>
-                        <span className="text-secondary">{item}</span>
+                      <li key={i} className="flex items-start group/item">
+                        <span className="text-primary mr-2 mt-1">•</span>
+                        <span className="text-secondary group-hover/item:text-foreground transition-colors duration-300">{item}</span>
                       </li>
                     ))}
                   </ul>
