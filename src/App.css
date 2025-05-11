@@ -1,7 +1,8 @@
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0;
   text-align: center;
 }
 
@@ -39,4 +40,25 @@
 
 .read-the-docs {
   color: #888;
+}
+
+/* Additional optimizations for light/dark mode */
+html.light .text-primary {
+  color: hsl(172, 70%, 40%);
+}
+
+html.light .btn-primary {
+  border-color: hsl(172, 70%, 40%);
+  color: hsl(172, 70%, 40%);
+}
+
+html.light .btn-primary:hover {
+  background-color: hsla(172, 70%, 40%, 0.1);
+  box-shadow: 0 0 15px hsla(172, 70%, 40%, 0.3);
+}
+
+/* Improve light mode card styling */
+html.light .card-hover:hover {
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  border-color: hsla(172, 70%, 40%, 0.4);
 }

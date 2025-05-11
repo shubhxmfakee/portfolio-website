@@ -56,10 +56,11 @@ const Header = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
-          {/* Logo */}
-          <a href="#" className="text-xl font-bold text-primary hover:text-primary/80 transition-all duration-300 group">
+          {/* Logo with two-tone coloring */}
+          <a href="#" className="text-xl font-bold hover:text-primary/80 transition-all duration-300 group">
             <span className="font-mono">&lt;</span>
-            <span className="group-hover:animate-pulse-soft">Portfolio</span>
+            <span className="text-primary group-hover:animate-pulse-soft">Port</span>
+            <span className="text-secondary">folio</span>
             <span className="font-mono">/&gt;</span>
           </a>
 

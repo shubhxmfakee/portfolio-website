@@ -7,7 +7,7 @@
 
 @layer base {
   :root {
-    /* Light theme variables (default) */
+    /* Light theme variables (default) - Improved for better contrast */
     --background: 210 40% 98%;     /* Softer light blue background */
     --foreground: 224 71% 18%;     /* Darker text for better contrast */
 
@@ -17,10 +17,10 @@
     --popover: 0 0% 100%;
     --popover-foreground: 224 71% 18%;
 
-    --primary: 180 62% 35%;        /* Deeper, richer teal for better visibility */
+    --primary: 172 70% 40%;        /* Adjusted teal color for better visibility */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 224 55% 40%;      /* Darker secondary color for better contrast */
+    --secondary: 224 60% 45%;      /* Richer secondary color */
     --secondary-foreground: 0 0% 100%;
 
     --muted: 210 40% 93%;
@@ -34,7 +34,7 @@
 
     --border: 214.3 31.8% 80%;     /* Lighter border color */
     --input: 214.3 31.8% 80%;
-    --ring: 180 62% 35%;           /* Match primary color */
+    --ring: 172 70% 40%;           /* Match primary color */
 
     --radius: 0.5rem;
   }

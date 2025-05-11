@@ -46,14 +46,14 @@ const Hero = () => {
           </div>
           
           <div className={`transition-opacity duration-500 delay-300 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-            <p className="text-secondary mb-8 max-w-xl text-lg">
+            <p className="text-secondary mb-12 max-w-xl text-lg">
               I'm a software developer, data engineer, and data analyst with 4 years of experience. 
               I specialize in building high-performance data solutions and applications for enterprises 
               and businesses.
             </p>
           </div>
           
-          <div className={`transition-opacity duration-500 delay-400 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+          <div className={`transition-opacity duration-500 delay-400 ${isVisible ? 'opacity-100' : 'opacity-0'} mb-20`}>
             <div className="flex flex-wrap gap-4">
               <a href="#projects" className="btn-primary group">
                 View My Work <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -65,8 +65,8 @@ const Hero = () => {
             </div>
           </div>
           
-          {/* Scroll indicator */}
-          <div className={`hidden md:flex absolute bottom-10 left-1/2 transform -translate-x-1/2 flex-col items-center transition-opacity duration-500 delay-500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+          {/* Scroll indicator with increased spacing */}
+          <div className={`hidden md:flex absolute bottom-0 left-1/2 transform -translate-x-1/2 flex-col items-center transition-opacity duration-500 delay-500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
             <span className="text-primary text-sm font-mono mb-2">Scroll Down</span>
             <div className="w-px h-10 bg-primary/50 relative">
               <div className="w-1.5 h-1.5 rounded-full bg-primary absolute -left-[2px] animate-bounce-subtle"></div>

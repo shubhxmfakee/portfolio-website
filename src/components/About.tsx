@@ -105,20 +105,6 @@ const About = () => {
                 </div>
               </div>
             </div>
-
-            <div className="mt-4 p-4 border border-accent/20 rounded-md bg-card shadow-soft hover:shadow-card-hover transition-all duration-300">
-              <h3 className="text-lg font-medium mb-2 flex items-center">
-                <span className="text-primary mr-2">
-                  <Cloud size={18} />
-                </span>
-                Cloud Certifications
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                <span className="badge">AWS Solution Architect</span>
-                <span className="badge">Azure Data Engineer</span>
-                <span className="badge">GCP Associate</span>
-              </div>
-            </div>
           </div>
         </div>
       </div>
