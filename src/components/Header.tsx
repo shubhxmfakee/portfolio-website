@@ -39,6 +39,7 @@ const Header = () => {
   // Nav links
   const navLinks = [
     { name: 'About', url: '#about' },
+    { name: 'Experience', url: '#experience' },
     { name: 'Skills', url: '#skills' },
     { name: 'Projects', url: '#projects' },
     { name: 'Contact', url: '#contact' },
@@ -62,13 +63,13 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8" role="navigation">
-            {navLinks.map((link, index) => (
+            {navLinks.map((link) => (
               <a 
                 key={link.name} 
                 href={link.url} 
                 className="nav-link font-mono text-sm"
               >
-                <span className="text-primary">{`0${index + 1}.`}</span> {link.name}
+                {link.name}
               </a>
             ))}
             <Button 
@@ -118,14 +119,14 @@ const Header = () => {
         role="navigation"
       >
         <div className="flex flex-col items-center justify-center h-full space-y-8">
-          {navLinks.map((link, index) => (
+          {navLinks.map((link) => (
             <a 
               key={link.name} 
               href={link.url} 
               onClick={() => setMenuOpen(false)}
               className="nav-link font-mono text-lg"
             >
-              <span className="text-primary">{`0${index + 1}.`}</span> {link.name}
+              {link.name}
             </a>
           ))}
           <a href="/resume.pdf" className="btn-primary text-lg font-mono mt-8" download>
